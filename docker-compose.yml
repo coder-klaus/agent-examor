@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: memor
+      POSTGRES_PASSWORD: memor
+      POSTGRES_DB: memor
+    ports:
+      - '5433:5432'
+    volumes:
+      - memor_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U memor']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgres://memor:memor@postgres:5432/memor
+      PORT: 3000
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-dev-only-change-me-32bytes!!}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-huaerjie001}
+    ports:
+      - '3000:3000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./deploy/nginx-web.conf:/etc/nginx/conf.d/default.conf:ro
+      - web_dist:/usr/share/nginx/html:ro
+    ports:
+      - '5180:80'
+    profiles: [full]
+
+  admin:
+    image: nginx:alpine
+    volumes:
+      - ./deploy/nginx-admin.conf:/etc/nginx/conf.d/default.conf:ro
+      - admin_dist:/usr/share/nginx/html:ro
+    ports:
+      - '5181:80'
+    profiles: [full]
+
+volumes:
+  memor_pg:
+  web_dist:
+  admin_dist:

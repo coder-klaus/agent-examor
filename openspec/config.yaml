@@ -1,0 +1,7 @@
+schema: spec-driven
+
+context: |
+  Standalone Memor repository (MIT): React web/admin (Vite), Hono API, PostgreSQL, Drizzle,
+  FSRS scheduling, OpenAI-compatible LLM grading, MCP + API keys, personal Docker deploy.
+  Legacy Examor (AGPL Vue/Python) lives in a separate repo — not part of this tree.
+  Normative specs: openspec/specs/*. Monorepo at repository root (apps/, packages/).

@@ -1,0 +1,142 @@
+@import 'katex/dist/katex.min.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --color-background: #f8fafc;
+  --color-foreground: #0f172a;
+  --color-card: #ffffff;
+  --color-card-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --color-border: #e2e8f0;
+  --color-primary: #4f46e5;
+  --color-primary-foreground: #ffffff;
+  --color-sidebar: #f1f5f9;
+  --color-sidebar-foreground: #0f172a;
+  --color-sidebar-muted: #64748b;
+  --color-sidebar-active: #e2e8f0;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+  --radius-lg: 1rem;
+  --radius-md: 0.625rem;
+}
+
+.dark {
+  --color-background: #0b1120;
+  --color-foreground: #f1f5f9;
+  --color-card: #111827;
+  --color-card-foreground: #f1f5f9;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #334155;
+  --color-primary: #818cf8;
+  --color-primary-foreground: #0f172a;
+  --color-sidebar: #020617;
+  --color-sidebar-foreground: #e2e8f0;
+  --color-sidebar-muted: #94a3b8;
+  --color-sidebar-active: #1e293b;
+}
+
+/* Streamdown / shadcn-compatible tokens (derived from Memor palette) */
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --card: var(--color-card);
+  --card-foreground: var(--color-card-foreground);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-primary-foreground);
+  --radius: var(--radius-md);
+}
+
+.dark {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --card: var(--color-card);
+  --card-foreground: var(--color-card-foreground);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --primary: var(--color-primary);
+  --primary-foreground: var(--color-primary-foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    margin: 0;
+    min-height: 100dvh;
+  }
+}
+
+@layer utilities {
+  .bg-background {
+    background-color: var(--color-background);
+  }
+  .text-foreground {
+    color: var(--color-foreground);
+  }
+  .bg-card {
+    background-color: var(--color-card);
+  }
+  .text-card-foreground {
+    color: var(--color-card-foreground);
+  }
+  .bg-muted {
+    background-color: var(--color-muted);
+  }
+  .text-muted-foreground {
+    color: var(--color-muted-foreground);
+  }
+  .border-border {
+    border-color: var(--color-border);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-primary-foreground {
+    color: var(--color-primary-foreground);
+  }
+  .text-danger {
+    color: var(--color-danger);
+  }
+  .bg-sidebar {
+    background-color: var(--color-sidebar);
+  }
+  .text-sidebar-foreground {
+    color: var(--color-sidebar-foreground);
+  }
+  .text-sidebar-muted {
+    color: var(--color-sidebar-muted);
+  }
+  .bg-sidebar-active {
+    background-color: var(--color-sidebar-active);
+  }
+}
+
+.blocknote-editor-root .bn-container {
+  --bn-colors-editor-background: var(--color-card);
+  --bn-colors-editor-text: var(--color-foreground);
+  --bn-colors-menu-background: var(--color-card);
+  --bn-colors-menu-text: var(--color-foreground);
+  --bn-colors-border: var(--color-border);
+  --bn-colors-hovered-background: var(--color-muted);
+}
+
+.streamdown-memor [data-streamdown='code-block'] {
+  border-radius: var(--radius-md);
+}

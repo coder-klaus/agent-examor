@@ -1,0 +1,23 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies & caches
+node_modules/
+.pnpm-store/
+.turbo/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Data & local tooling
+data/
+apps/api/.venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
